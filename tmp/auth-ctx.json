@@ -1,0 +1,48 @@
+{
+  "authKeys": [
+    "handler",
+    "api",
+    "options",
+    "$context",
+    "$ERROR_CODES"
+  ],
+  "apiKeys": [
+    "signInSocial",
+    "callbackOAuth",
+    "getSession",
+    "signOut",
+    "signUpEmail",
+    "signInEmail",
+    "resetPassword",
+    "verifyPassword",
+    "verifyEmail",
+    "sendVerificationEmail",
+    "changeEmail",
+    "changePassword",
+    "setPassword",
+    "updateSession",
+    "updateUser",
+    "deleteUser",
+    "requestPasswordReset",
+    "requestPasswordResetCallback",
+    "listSessions",
+    "revokeSession",
+    "revokeSessions",
+    "revokeOtherSessions",
+    "linkSocialAccount",
+    "listUserAccounts",
+    "deleteUserCallback",
+    "unlinkAccount",
+    "refreshToken",
+    "getAccessToken",
+    "accountInfo",
+    "ok",
+    "error"
+  ],
+  "ctxKeys": null,
+  "opts": [
+    "secret",
+    "baseURL",
+    "appName"
+  ]
+}
