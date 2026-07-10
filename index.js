@@ -44,6 +44,28 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
+// Provide a helper endpoint for frontend to start Google OAuth
+// Accept any method (POST/GET) and be resilient on deployed hosts by
+// deriving base URL from env or the incoming request.
+app.all('/api/auth/google', (req, res) => {
+  try {
+    console.log('/api/auth/google called', { method: req.method, host: req.get('host') })
+
+    let base = (process.env.BETTER_AUTH_URL || '').replace(/\/+$/,'')
+    if (!base) {
+      const proto = req.headers['x-forwarded-proto'] || req.protocol || 'http'
+      const host = req.get('host') || `localhost:${PORT}`
+      base = `${proto}://${host}`
+    }
+
+    const redirectUrl = `${base}/api/auth/oauth/google`
+    return res.json({ redirectUrl })
+  } catch (err) {
+    console.error('Error building google oauth url:', err)
+    return res.status(500).json({ error: 'Failed to build Google OAuth URL' })
+  }
+})
+
 // Mount BetterAuth under /api/auth
 app.use('/api/auth', (req, res, next) => {
   authHandler(req, res).catch(next)
